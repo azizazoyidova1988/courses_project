@@ -1,0 +1,157 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+        <main class="main">
+            <!-- HOME SECTION -->
+            <section class="home" id="#">
+                <div class="home__container">
+                    <div class="home__info">
+                        <h1 class="home__info__title"><span>Start earning</span> more with your business ...</h1>
+                        <p class="home__info__description">An Online educational website for Business Technologies </p>
+                    </div>
+                    <div class="home__photo">
+                        <img src="{% static 'store/images/home.png' %}" alt="home.png">
+                    </div>
+                </div>
+            </section>
+            <!-- ADVANTAGES SECTION -->
+            <section class="advantages">
+                <div class="advantages__title">
+                    <h1>ADVANTAGES</h1>
+                </div>
+
+                <div class="advantages__container">
+                    <!-- Item 1 -->
+                    {% for i in items %}
+                    <div class="advantages__item">
+                        <div class="advantages__item__logo">
+                            <img src="/media/{{i.image}}" alt="Logo">
+                        </div>
+                        <div class="advantages__item__title">
+                            <h1>Learn the latest skills</h1>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </section>
+
+            <!-- OUR COURSES SECTION -->
+            <section class="courses" id="courses">
+                <div class="courses__info">
+                    <h1 class="courses__title">OUR COURSES</h1>
+                    <a href="./static/components/courses.html" class="courses__link">VIEW ALL COURSES</a>
+                </div>
+                <div class="courses__container">
+                  {% for course in courses %}
+                    {% if forloop.counter0 < 3 %}
+                    <div class="courses__item">
+                        <div class="courses__item__photo">
+                            <img src="/media/{{course.image}}" alt="Photo">
+                        </div>
+                        <div class="courses__item__title">
+                            <h1>{{course.title}}</h1>
+                        </div>
+                       <div class="courses__item__description">
+                           <p>{{course.description}}</p>
+                       </div>
+                       <div class="ourses__item__button">
+                           <a href="#">learn more</a>
+                       </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+
+                </div>
+            </section>
+
+
+            <!-- OUR TEAM SECTION -->
+            <section class="team" id="team">
+                <div class="team__title">
+                    <h1>OUR TEAM</h1>
+                </div>
+                 <div class="team__container">
+                     <!-- Item 1 -->
+                     {% for team in teams %}
+                      {% if forloop.counter0 < 3 %}
+                     {% if not forloop.counter|divisibleby:2 %}
+
+
+                     <div class="team__item">
+                         <div class="team__person_photo">
+                             <img src="/media/{{team.image}}" alt="Photo">
+                         </div>
+                         <div class="team__person_info">
+                             <div class="team__person_name">
+                                 <h1>{{team.name}}</h1>
+                             </div>
+                             <div class="team__person_about">
+                                 <h3>
+                                     {{team.degree}}
+                                 </h3>
+                             </div>
+                             <div class="team__person_about__description">
+                                 <span></span>
+                                 <p>
+                                     {{team.description}}
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+
+                     {% else %}
+                     <div class="team__item flex-reverse">
+                        <div class="team__person_info">
+                            <div class="team__person_name">
+                                <h1>{{team.name}}</h1>
+                            </div>
+                            <div class="team__person_about">
+                                <h3>
+                                    {{team.degree}}
+                                </h3>
+                            </div>
+                            <div class="team__person_about__description">
+                                <span></span>
+                                <p>  {{team.description}}  </p>
+                            </div>
+                        </div>
+                        <div class="team__person_photo">
+                            <img src="/media/{{team.image}}" alt="Photo">
+                        </div>
+                    </div>
+                     {% endif %}
+                     {% endif %}
+                     {% endfor %}
+
+                 </div>
+            </section>
+
+            <!-- SIGN UP SECTION -->
+            <section class="signup">
+                <div class="signup__container">
+                    <div class="signup__title">
+                        <h1>Sign Up To Our Newsletter</h1>
+                    </div>
+                    <div class="signup__description">
+                        <h3>Subscribe to our newsletter and get many
+                            interesting things every week </h3>
+                    </div>
+                    <form action="#" class="subscribe-form" method="post">
+							{% csrf_token %}
+							<div class="signup__input">
+								{{form_email.email}}
+							<button type="submit" >SUBSCRIBE</button>
+							</div>
+
+						</form>
+
+                                  </div>
+            </section>
+        </main>
+
+{% endblock content %}

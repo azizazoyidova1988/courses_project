@@ -1,0 +1,23 @@
+{% load static %}
+<header class="header">
+            <!-- Header Brand Item -->
+            <div class="brand">
+                <img src="{% static 'store/images/logo-dark.png' %}" alt="Logo">
+
+            </div>
+            <!-- Header Nav Items -->
+            <nav>
+                <ul>
+                    <li class="nav-item {{home_page}}"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item {{course_page}}"><a href="{% url 'courses' %}">Corses</a> </li>
+                    <li class="nav-item {{team_page}}"><a href="{% url 'team' %}">Team</a></li>
+                    <li class="nav-item {{news_page}}"><a href="{% url 'news' %}">News</a></li>
+                    <li class="nav-item {{contact_page}}"><a href="{% url 'contact' %}">Contact</a></li>
+                    <li class="log__in"><a href="./static/components/log_in/index.html">Log In</a></li>
+                </ul>
+            </nav>
+            <!-- Header Close Button -->
+            <div class="menu__button">
+                <div class="menu__button__burger"></div>
+            </div>
+        </header>
