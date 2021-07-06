@@ -1,62 +1,73 @@
 {% extends 'store/base.html' %}
 {% load static %}
 {% block content %}
+<main class="main">
+   <section class="team" id="team">
+                <div class="team__title">
+                    <h1>OUR TEAM</h1>
+                </div>
+                 <div class="team__container">
+                     <!-- Item 1 -->
+                     {% for team in teams %}
+                      {% if forloop.counter0 < 3 %}
+                     {% if not forloop.counter|divisibleby:2 %}
 
+
+                     <div class="team__item">
+                         <div class="team__person_photo">
+                             <img src="/media/{{team.image}}" alt="Photo">
+                         </div>
+                         <div class="team__person_info">
+                             <div class="team__person_name">
+                                 <h1>{{team.name}}</h1>
+                             </div>
+                             <div class="team__person_about">
+                                 <h3>
+                                     {{team.degree}}
+                                 </h3>
+                             </div>
+                             <div class="team__person_about__description">
+                                 <span></span>
+                                 <p>
+                                     {{team.description}}
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+
+                     {% else %}
+                     <div class="team__item flex-reverse">
+                        <div class="team__person_info">
+                            <div class="team__person_name">
+                                <h1>{{team.name}}</h1>
+                            </div>
+                            <div class="team__person_about">
+                                <h3>
+                                    {{team.degree}}
+                                </h3>
+                            </div>
+                            <div class="team__person_about__description">
+                                <span></span>
+                                <p>  {{team.description}}  </p>
+                            </div>
+                        </div>
+                        <div class="team__person_photo">
+                            <img src="/media/{{team.image}}" alt="Photo">
+                        </div>
+                    </div>
+                     {% endif %}
+                     {% endif %}
+                     {% endfor %}
+
+                 </div>
+            </section>
     <div class="container">
-        <div class="row">
-            <div class="our__team">
-                <h1 class="our__team-title">OUR TEAM</h1>
-                <div class="team">
-                    <div class="team__right">
-                        <img class="team__img" src="./img/team-1.png" alt="img">
-                    </div>
-                    <div class="team__left">
-                        <h2 class="team__title"> Lorem, ipsum.</h2>
+    <div class="row">
+    <div class="our__team">
 
-                        <h3 class="team__title2">
-                            Lorem ipsum dolor sit amet.
-                        </h3>
-
-                        <div class="line"></div>
-
-                        <p class="team__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim velit ab explicabo totam debitis fuga, quod iste ex eum fugiat, accusamus quas dignissimos quam culpa. Animi quod eveniet quaerat quia pariatur. Iusto officiis quidem quisquam alias,</p>
-                    </div>
-                </div>
-                <div class="team">
-                    <div class="team__right">
-                        <img class="team__img" src="./img/team-1.png" alt="img">
-                    </div>
-                    <div class="team__left">
-                        <h2 class="team__title"> Lorem, ipsum.</h2>
-
-                        <h3 class="team__title2">
-                            Lorem ipsum dolor sit amet.
-                        </h3>
-
-                        <div class="line"></div>
-
-                        <p class="team__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim velit ab explicabo totam debitis fuga, quod iste ex eum fugiat, accusamus quas dignissimos quam culpa. Animi quod eveniet quaerat quia pariatur. Iusto officiis quidem quisquam alias,</p>
-                    </div>
-                </div>
-                <div class="team">
-                    <div class="team__right">
-                        <img class="team__img" src="./img/team-1.png" alt="img">
-                    </div>
-                    <div class="team__left">
-                        <h2 class="team__title"> Lorem, ipsum.</h2>
-
-                        <h3 class="team__title2">
-                            Lorem ipsum dolor sit amet.
-                        </h3>
-
-                        <div class="line"></div>
-
-                        <p class="team__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim velit ab explicabo totam debitis fuga, quod iste ex eum fugiat, accusamus quas dignissimos quam culpa. Animi quod eveniet quaerat quia pariatur. Iusto officiis quidem quisquam alias,</p>
-                    </div>
-                </div>
-                <img class="guvohnoma" src="./img/Guvohnoma.jpg" alt="">
-            </div>
-        </div>
+        <img class="guvohnoma" src="{% static 'store/images/Guvohnoma.jpg' %}" alt="">
     </div>
-
+    </div>
+    </div>
+      </main>
 {% endblock content %}

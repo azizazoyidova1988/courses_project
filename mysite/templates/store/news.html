@@ -5,78 +5,58 @@
         <main class="main">
             <!-- OUR COURSES SECTION -->
             <section class="courses" id="courses">
+                <div class="container">
                 <div class="courses__info">
                     <h1 class="courses__title">ALL NEWS</h1>
                 </div>
                 <div class="courses__container">
-                    <!-- Item 1 -->
+                    {% for new in page.object_list %}
+                    {% if forloop.counter0 < 3 %}
                     <div class="courses__item">
                         <div class="courses__item__photo">
-                            <img src="../images/cours-1.png" alt="Photo">
+                            <img src="/media/{{new.image}}" alt="Photo">
                         </div>
                         <div class="courses__item__title">
-                            <h1>How to Start Your Own Business</h1>
+                            <h1>{{new.title}}</h1>
                         </div>
                        <div class="courses__item__description">
-                           <p>In this Specialization, you’ll develop basic literacy in the language of business...</p>
+                           <p>{{new.description}}</p>
                        </div>
-                       <div class="ourses__item__button">
-                           <a href="./new.html">learn more</a>
-                       </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="courses__item">
-                        <div class="courses__item__photo">
-                            <img src="../images/cours-2.png" alt="Photo">
-                        </div>
-                        <div class="courses__item__title">
-                            <h1>How to Start Your Own Business</h1>
-                        </div>
-                       <div class="courses__item__description">
-                           <p>In this Specialization, you’ll develop basic literacy in the language of business...</p>
-                       </div>
-                       <div class="ourses__item__button">
-                           <a href="./new.html">learn more</a>
+                       <div class="courses__item__button">
+                           <a href="{% url 'new_single' news_id=new.id %}">learn more</a>
                        </div>
                     </div>
-                         <!-- Item 3 -->
-                         <div class="courses__item">
-                            <div class="courses__item__photo">
-                                <img src="../images/cours-3.png" alt="Photo">
-                            </div>
-                            <div class="courses__item__title">
-                                <h1>How to Start Your Own Business</h1>
-                            </div>
-                           <div class="courses__item__description">
-                               <p>In this Specialization, you’ll develop basic literacy in the language of business...</p>
-                           </div>
-                           <div class="ourses__item__button">
-                               <a href="./new.html">learn more</a>
-                           </div>
-                        </div>
-                        <!-- Item 4 -->
-                        <div class="courses__item">
-                            <div class="courses__item__photo">
-                                <img src="../images/cours-4.png" alt="Photo">
-                            </div>
-                            <div class="courses__item__title">
-                                <h1>How to Start Your Own Business</h1>
-                            </div>
-                           <div class="courses__item__description">
-                               <p>In this Specialization, you’ll develop basic literacy in the language of business...</p>
-                           </div>
-                           <div class="ourses__item__button">
-                               <a href="./new.html">learn more</a>
-                           </div>
-                        </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
-                <div class="courses__next">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">NEXT PAGE</a>
-                </div>
+                <div class="row">
+
+          <form method="get" id="id_page_form">
+            <input type="hidden" id="id_page" name="page" value="{{page.number}}">
+
+          </form>
+         <div class="courses__next">
+            {% if page.has_previous %}
+              <a style="cursor:pointer;" class="page-link" onclick="get_page_list({{page.previous_page_number}})">PREVIOUS PAGE</a>
+            {% endif %}
+              <a class="page-link" href="#">{{page.number}}</a>
+            {% if page.has_next %}
+              <a style="cursor:pointer;"  class="page-link" onclick="get_page_list({{page.next_page_number}})">NEXT PAGE</a>
+            {% endif %}
+
+
+        </div>
+        </div>
+
+            </div>
             </section>
         </main>
-
+<script>
+   function get_page_list(page){
+   p=document.getElementById("id_page");
+   p.value=page;
+   document.getElementById("id_page_form").submit();
+   }
+ </script>
 
 {% endblock content %}

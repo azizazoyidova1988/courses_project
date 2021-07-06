@@ -3,25 +3,17 @@
     <footer class="footer">
       <div class="footer__container">
            <div class="footer__logo">
-               <img src="./static/images/logo-white.png" alt="Logo">
+               <img src="{% static 'store/images/logo-white.png' %}" alt="Logo">
            </div>
-            <ul class="footer__list">
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">News</a>
-                </li>
-                <li>
-                    <a href="#courses">Corses</a>
-                </li>
-                <li>
-                    <a href="#team">Team</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
+                <ul class="footer__list">
+                    <li class="nav-item {{home_page}}"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item {{course_page}}"><a href="{% url 'courses' %}">Courses</a> </li>
+                    <li class="nav-item {{team_page}}"><a href="{% url 'team' %}">Team</a></li>
+                    <li class="nav-item {{news_page}}"><a href="{% url 'news' %}">News</a></li>
+                    <li class="nav-item {{contact_page}}"><a href="{% url 'contact' %}">Contact</a></li>
+
+                </ul>
+
            <div class="footer__icons">
                <a href="#"><i class='bx bxl-facebook-square'></i></a>
                <a href="#"><i class='bx bxl-instagram-alt' ></i></a>

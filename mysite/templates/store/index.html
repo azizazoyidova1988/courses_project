@@ -47,7 +47,7 @@
                 </div>
                 <div class="courses__container">
                   {% for course in courses %}
-                    {% if forloop.counter0 < 3 %}
+
                     <div class="courses__item">
                         <div class="courses__item__photo">
                             <img src="/media/{{course.image}}" alt="Photo">
@@ -59,10 +59,10 @@
                            <p>{{course.description}}</p>
                        </div>
                        <div class="ourses__item__button">
-                           <a href="#">learn more</a>
+                           <a href="{% url 'video' pk=course.id pks=2 %}">learn more</a>
                        </div>
                     </div>
-                    {% endif %}
+
                     {% endfor %}
 
 

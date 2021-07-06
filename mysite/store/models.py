@@ -16,7 +16,8 @@ class Items(models.Model):
 class Course(models.Model):
     title = models.CharField(max_length=120, blank=False, null=True)
     image = models.ImageField(upload_to='image/', blank=False, null=True)
-    description = models.TextField(blank=False, null=True)
+    description_1 = models.TextField(blank=False, null=True)
+    description_2 = models.TextField(blank=False, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -66,7 +67,7 @@ class News(models.Model):
 
 class Video(models.Model):
     title = models.CharField(max_length=120, blank=False, null=True)
-    video = models.FileField(upload_to='video/', blank=False, null=False)
+    video = models.FileField(upload_to='video/',  null=True, verbose_name="")
     description = models.TextField(blank=False, null=True)
     course = models.ForeignKey(Course, blank=False, null=True, on_delete=models.SET_NULL)
     count = models.PositiveIntegerField(default=0, blank=False, null=False)
@@ -82,8 +83,8 @@ class Video(models.Model):
 class Commenter(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     message = models.TextField(max_length=350, blank=False, null=False)
-    image = models.ImageField(upload_to='images/', blank=False, null=False)
     video = models.ForeignKey(Video, blank=False, null=True, on_delete=models.SET_NULL)
+    course = models.ForeignKey(Course, blank=False, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -91,3 +92,4 @@ class Commenter(models.Model):
 
     class Meta:
         db_table = "commenter"
+
